@@ -5,9 +5,9 @@ const dotenv = require('dotenv').config({
 
 module.exports = {
     connectionLimit : 10,
-    host: 'localhost',
-    username: 'root',
-    password: 'password',
-    database: 'db',
-    port: '3307'
+    host     : process.env.DATABASE_HOST,
+    user     : process.env.DB_USERNAME,
+    password : process.env.DB_PASSWORD,
+    database : process.env.DATABASE_NAME,
+    port     : process.env.DATABASE_PORT
 }
