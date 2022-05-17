@@ -1,12 +1,8 @@
 const express = require ('express');
+const postController = require('../controller/postController');
 const router = express.Router();
 
-router.get('/posts', (req, res) => {
-    res.json({
-        title: 'my first posts',
-        content: 'my first content',
-        author: 'Teixeira Junior'
-    });
-})
+router.use(express.json());
+router.get('/posts', postController.createPost)
 
 module.exports = router

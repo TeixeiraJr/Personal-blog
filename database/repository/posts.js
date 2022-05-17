@@ -1,9 +1,9 @@
-const Calculator = require('../models/Calculator');
+const dbConfig = require('../config/config');
+const mysql = require('mysql2');
 
-exports.sendPost = (params) => {
+let connection = msql.createConnection(config);
 
-    con.connect(function(err) {
-        if (err) throw err;
+exports.insertPost = () => {
         let query = `
         INSERT INTO
         posts
@@ -13,14 +13,13 @@ exports.sendPost = (params) => {
         author_id,
         )
         VALUES
-        ${params.post.title}
-        ${params.post.content}
-        ${params.post.author_id}
+        'post de teste',
+        'conteudo do post de teste',
+        '1'
         `;
-        con.query(query, function (err, result, fields) {
-          if (err) throw err;
+        connection.query(query, function (err, result, fields) {
+        if (err) throw err;
           console.log(result);
         });
-      });
-    return true
+        return result;
 };
