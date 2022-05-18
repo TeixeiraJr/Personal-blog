@@ -5,7 +5,7 @@ let connection = mysql.createConnection(dbConfig);
 
 exports.insertPost = (params) => {
   console.log('params', params);
-        let query = `
+  let query = `
         INSERT INTO
         posts
         (
@@ -18,8 +18,32 @@ exports.insertPost = (params) => {
         '${params.post.content}',
         '${params.post.author_id}')
         `;
-        connection.query(query, function (err, result, fields) {
-        if (err) throw err;
-        if (result) return result;
-        });
+  connection.query(query, function (err, result, fields) {
+    if (err) throw err;
+    if (result) return result;
+  });
+};
+
+exports.updatePost = (params) => {
+  console.log('params', params);
+  let query = `
+    UPDATE
+    posts
+    SET`
+    if (params.post.title) {
+    query +=`
+    title = 'nome editado 2',
+    `
+    }
+    if (params.post.content) {
+      query += `content = 'conteúdo editado 2',`
+    }
+    if (params.post.author) {
+      query += `author_id = '1'`
+    }
+    query += `WHERE id = '1'`;
+  connection.query(query, function (err, result, fields) {
+    if (err) throw err;
+    if (result) return result;
+  });
 };
