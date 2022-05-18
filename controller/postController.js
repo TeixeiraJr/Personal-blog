@@ -1,9 +1,10 @@
-const { createPost } = require('../database/repository/posts');
+const { insertPost } = require('../database/repository/posts');
 
 module.exports = {
 
     async createPost( req , res ) {
-        const users = await insertPost();
+        console.log('req.body', req.body);
+        const users = await insertPost(req.body);
         return res.json(users);
     }
 }

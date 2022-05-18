@@ -1,25 +1,25 @@
 const dbConfig = require('../config/config');
 const mysql = require('mysql2');
 
-let connection = msql.createConnection(config);
+let connection = mysql.createConnection(dbConfig);
 
-exports.insertPost = () => {
+exports.insertPost = (params) => {
+  console.log('params', params);
         let query = `
         INSERT INTO
         posts
         (
         title,
         content,
-        author_id,
+        author_id
         )
         VALUES
-        'post de teste',
-        'conteudo do post de teste',
-        '1'
+        ('${params.post.title}',
+        '${params.post.content}',
+        '${params.post.author_id}')
         `;
         connection.query(query, function (err, result, fields) {
         if (err) throw err;
-          console.log(result);
+        if (result) return result;
         });
-        return result;
 };
