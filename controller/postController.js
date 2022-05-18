@@ -1,4 +1,4 @@
-const { insertPost, updatePost } = require('../database/repository/posts');
+const { deletePost, insertPost, updatePost } = require('../database/repository/posts');
 
 module.exports = {
 
@@ -13,4 +13,11 @@ module.exports = {
         const users = await updatePost(req.body);
         return res.json(users);
     },
+
+    async deletePost( req , res ) {
+        // console.log('req.body', req.body);
+        const users = await deletePost(req.body);
+        return res.json(users);
+    },
+
 }

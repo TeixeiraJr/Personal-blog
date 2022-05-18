@@ -41,7 +41,21 @@ exports.updatePost = (params) => {
     if (params.post.author) {
       query += `author_id = '1'`
     }
-    query += `WHERE id = '1'`;
+    query += `WHERE id = '${params.post.id}'`;
+  connection.query(query, function (err, result, fields) {
+    if (err) throw err;
+    if (result) return result;
+  });
+};
+
+exports.deletePost = (params) => {
+  console.log('params', params);
+  let query = `
+    DELETE FROM
+    posts
+    WHERE 
+    id = ${params.post.id}
+    `
   connection.query(query, function (err, result, fields) {
     if (err) throw err;
     if (result) return result;
